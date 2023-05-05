@@ -1,0 +1,44 @@
+body {
+    font-family: Inter, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fbdaba 20%, #f9b8cb);
+  }
+  
+section {
+margin: 20px auto;
+max-width: 800px;
+margin-bottom: 60px;
+}
+
+h1 {
+font-size: 45px;
+text-align: center;
+margin-bottom: 20px;
+margin-top: 50px;
+font-weight: 400;
+}
+
+h2 {
+margin-top: 50px;
+font-weight: 500;
+}
+
+p {
+font-size: 16px;
+line-height: 1.5;
+margin-bottom: 20px;
+}
+
+body::-webkit-scrollbar {
+width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #4c4c4c;
+border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+background-color: #000000;
+}

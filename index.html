@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Summarizer</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>👨🏽‍💻 <strong>Group 17 - Web Summarizer</strong></h1>
+	<section>
+		<h2>🤔 <strong>Motivation and Background</strong></h2>
+		<p>Modern society relies heavily on the internet and online information. Knowledge and information are scattered across websites, some which are formatted nicely, and some which aren’t. Users may find themselves frustrated and overwhelmed when they encounter a website that contains a lot of words. Desired information can be buried in these paragraphs, making it a difficult and time-consuming process.</p>
+		<p>Furthermore, individuals with disabilities may find it even more difficult to extract the main points from these paragraphs. This can be seen in users with autism, ADHD, poor vision, or other visual impairments. Removing this barrier is essential to providing accessibility-friendly use of the internet.</p>
+		<p>As a result, our team has developed a browser extension that summarizes text and simplifies it so that users are able to easily read pages without getting distracted by extra content. Our design takes text on a page as input and generates the output in real-time on the current page with the summarized text. It is activated by a simple click.</p>
+	</section>
+
+    <section>
+		<h2>💻 <strong>Development Process</strong></h2>
+		<p>Our team chose to split responsibilities among each other in order to speed up the development process. This took place by having certain people work on the extension pipeline, some people work on the front end, and others work on the backend and OpenAI development. Each of these steps had a lot of dependence on one another, so communication was crucial to our developmental process.</p>
+		<p><strong>Google Extension</strong> - Our Google extension was locally hosted which means that in order to use the product, it must be loaded into your browser. This was the first step completed as we needed a baseline for how our pipeline would work. This was one of the biggest challenges since the pipeline for text grabbing, parsing, converting, and outputting has too much dependence on one another, so if one portion breaks all of it breaks. Our manifest file set up most of our extension as it handled all the routing and setup for our project. We also played around with the idea of using a server-side API versus vanilla javascript for our summarization.</p>
+		<p><strong>Frontend</strong> - Our frontend was written in HTML and CSS as that is the default for Chrome extensions. We decided to keep the format incredibly simple to further promote the ease-of-use factor for our product. The front end took advantage of buttons and sliders in order for the back end to easily grab any data. The biggest challenge in this portion was ensuring that the backend understood the difference in documents, as the HTML for the extension is treated separately from the HTML for the current page.</p>
+        <p><strong>Backend</strong> - Our backend was a three-step process in terms of development. The first step was registering clicks and grabbing information from both our current document and the extensions. This difference in HTML files added some additional complexity. Once this information was accessible, our second step was to grab all the text and put them into nodes for summarization. Placing them into nodes was important in order to ensure that when we summarized a paragraph, it did not affect any other paragraphs. This was also important for ensuring asynchronous code would work reliably. Our final step was to take each of these nodes and run it through OpenAI for summarization. Since each call to OpenAI takes time, we decided to make this process asynchronous so we could send multiple requests and let them process independently to speed up the total summarization time.</p>
+        <p><strong>OpenAI</strong> - Our summarization was done using OpenAI. We played around with a lot of different models and parameters in order to find the combination that best fit our purposes. We also had to test different variations of our input prompt as we wanted to ensure that the summarization was accurate but also considerably shorter than the initial paragraph. This took a lot of experimentation since the models offered in APIs are not on the same level as GPT 3.5, which is the version accessible on the web. Rate limiting caused concerns for our team since only X amount of calls can be made to the API in a minute, which makes summarizing larger pages much more time-consuming.</p>
+    </section>
+
+    <section>
+		<h2><strong>📝 User Evaluation & Peer Feedback</strong></h2>
+		<h3>User Evaluation</h3>
+		<p>For user evaluation, we utilized the concept of product testing. We got fifteen different users and made them use our product on their website of choice. We then asked them a fixed set of predetermined questions in order to gauge their thoughts on our product. We asked them questions related to accuracy, usability, and speed.</p>
+		<p><strong>Accuracy</strong> - Most of our users found of product to be extremely accurate which is great to hear since summarized information can sometimes miss out on information. They also found that the length-to-accuracy ratio was great.</p>
+		<p><strong>Usability</strong> - Every single one of our users had good comments about the usability of our product . They found the product to be self-explanatory in terms of usage, and that all of the buttons and sliders were appropriately sized. </p>
+        <p><strong>Speed</strong> - The one downside to our product that most users agreed with was speed. For all of the users that tried using our product on longer pages, they found that the speed was detrimental to the overall extension. That said, we took this feedback into account and made our API calls to OpenAI asynchronous, which fixes the issue. Our extension now takes no more than a couple of seconds to summarize every page. </p>
+		<h3>Peer Feedback + Key Insights</h3>
+		<p>For the peer feedback from our presentation, we received a huge majority of positive comments in regards to the overall idea and execution of the extension. Overall, we are proud that most of the students within the class had expressed how they found it could be useful for any audienece - those with or without ADHD. Additionally, they were impressed with the design process and workflow within our presentation. Here are some examples of the positive feedback we received from the class:</p>
+		<blockquote>
+			<p><em>"They were very efficient, clear in language and expressed topic concisely. Very readable presentation, and has a niche target for those with ADHD impairments. It sums up lengthy articles, and I can see myself using it even though I do not have ADHD. Lastly, it seems very relevant as OpenAI is the craze and could be useful for many."</em></p>
+		</blockquote>
+		<blockquote>
+			<p><em>"The product idea was creative and something I would use. The paper prototype emulating touch was neat and demonstrated the workflow well. Implementation was impressive."</em></p>
+		</blockquote>
+		<p>With the feedback, we also received some constructive suggestions on future considerations. One of the questions/suggestions we received when we presented was about how we could make the extension work faster. After Milestone #3, our group was able to implement asynchronous calls to directly improve the speed of the summarization. Here is some other feedback we hope to improve upon:</p>
+		<blockquote>
+			<p><em>"This Summarizer tool is a great idea due to the fact that many people suffer from ADHD and short attention spans. One thing to think about it is how summarizing could change the overall tone/message of what is being summarized. English for example, has so much nuance it will be important to keep these within the summary! Great work!"</em></p>
+		</blockquote>
+		<blockquote>
+			<p><em>"With a little more polishing, this could be an awesome tool!"</em></p>
+		</blockquote>
+		<p>Overall, we can see that the feedback above provides us with future, more long-term tasks as we continue to build upon our current product. You can view all of comments/feedback <a href="https://drive.google.com/file/d/1qW2Iwn20DPnmcEhSbxPyXDiQkphICsPb/view?usp=sharing">here</a>.</p>
+		  
+    </section>
+
+    <section>
+		<h2>🔮 <strong>Future Work</strong></h2>
+		<p><strong>Rate Limiting</strong> - As discussed previously, OpenAI only permits users to make X calls every second, which can be an issue when it comes to longer documents. There are two ways that we can work around this. The first way is to simply pay for higher limits for the current master account on OpenAI. The other alternative is to make each user upload their OpenAI key, so the cost is per user.</p>
+		<p><strong>Images</strong> - Our current constraint with our extension is that it only works for text. Image summarization is currently not available but one option is to replace the images themselves with their alt text. Another option that is more difficult is to run the image through GPT 4 and extract the meaning from the image. </p>
+		<p><strong>Tone</strong> - This was one idea given through the feedback we received from our class. While OpenAI's summarization does focus primarily on extracting the most important information from a piece of text, our group will look to verify and research about natural language processing and current APIs/algorithms, potentially looking to apply sentiment analysis to ensure the integrity of an author's tone within a passage.</p>
+	</section>
+
+    <section>
+		<h2>🎥 Promotional Video</h2>
+		<iframe width="600" height="350" src="https://www.youtube.com/embed/wxuZlXr15k4" frameborder="0" allowfullscreen></iframe>
+	</section>
+
+	<section>
+		<h2>👨‍🏫 <strong>Milestone #3 Slides</strong></h2>
+		<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQH218v4F7wzxa74hXR89jg-oYOBgZfKVjJpUrgIT9Pf16HHD4MDPu5wZi32ndrsQ60tTSt6Y4qyyOr/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	</section>
+
+    <section>
+		<h2>✍🏽 <strong>Contributions</strong></h2>
+		<p><strong>Vatsal</strong> - Backend development for grabbing document, finding paragraphs, making calls to API, and updating document with summarized information.</p>
+		<p><strong>Justin</strong> - Backend development for OpenAI by testing models, tuning parameters, making calls to API, and testing input prompts.</p>
+		<p><strong>Isabelle</strong> - Frontend development for extension, logo creation, sliders/buttons, and loading animation.</p>
+        <p><strong>Ekdev</strong> - Backend development for asynchronous code implementation and improving backend pipeline. </p>
+        <p><strong>Ashrita</strong> - Setup google extension, routing, and development where needed.</p>
+		<p><strong>Kavya</strong> - Research into summarization technologies such as OpenAI, current libraries, and self-developing summarization ideas.</p>
+    </section>
+</body>
+</html>
